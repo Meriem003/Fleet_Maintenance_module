@@ -6,20 +6,19 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\VehicleController;
 use App\Http\Controllers\Api\MaintenanceController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application.
-|
-*/
-
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/logout-all', [AuthController::class, 'logoutFromAllDevices']);
+    Route::get('/tokens', [AuthController::class, 'tokens']);
+    
     Route::apiResource('vehicles', VehicleController::class);
-    Route::apiResource('maintenances', MaintenanceController::class);
+    
+    Route::get('/vehicles/{vehicle}/maintenance', [MaintenanceController::class, 'index']);
+    Route::post('/vehicles/{vehicle}/maintenance', [MaintenanceController::class, 'store']);
+    
+    Route::put('/maintenance/{maintenance}', [MaintenanceController::class, 'update']);
+    Route::delete('/maintenance/{maintenance}', [MaintenanceController::class, 'destroy']);
 });

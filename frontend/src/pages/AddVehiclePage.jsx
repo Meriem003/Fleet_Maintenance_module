@@ -1,0 +1,136 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { vehicleService } from '../services/vehicles';
+import { Card } from '../components/common/Card';
+import { Input } from '../components/common/Input';
+import { Button } from '../components/common/Button';
+import { ArrowLeft } from 'lucide-react';
+import toast from 'react-hot-toast';
+
+export const AddVehiclePage = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [formData, setFormData] = useState({
+    plate_number: '',
+    model: '',
+    year: new Date().getFullYear(),
+    status: 'active',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error for this field
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrors({});
+
+    try {
+      await vehicleService.create(formData);
+      toast.success('Vehicle added successfully');
+      navigate('/vehicles');
+    } catch (error) {
+      const validationErrors = error.response?.data?.errors || {};
+      setErrors(validationErrors);
+      toast.error(error.response?.data?.message || 'Failed to add vehicle');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto space-y-6 animate-in fade-in duration-500">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate('/vehicles')}
+        className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        Back to Vehicles
+      </button>
+
+      {/* Form Card */}
+      <Card>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Add New Vehicle</h1>
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <Input
+            label="Plate Number"
+            name="plate_number"
+            placeholder="ABC-1234"
+            value={formData.plate_number}
+            onChange={handleChange}
+            error={errors.plate_number?.[0]}
+            required
+          />
+
+          <Input
+            label="Model"
+            name="model"
+            placeholder="Toyota Camry"
+            value={formData.model}
+            onChange={handleChange}
+            error={errors.model?.[0]}
+            required
+          />
+
+          <Input
+            label="Year"
+            name="year"
+            type="number"
+            min="1900"
+            max={new Date().getFullYear() + 1}
+            value={formData.year}
+            onChange={handleChange}
+            error={errors.year?.[0]}
+            required
+          />
+
+          <div className="space-y-1.5">
+            <label className="block text-sm font-medium text-gray-700">
+              Status
+            </label>
+            <select
+              name="status"
+              value={formData.status}
+              onChange={handleChange}
+              className="input-field"
+            >
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            {errors.status && (
+              <p className="text-sm text-red-600">{errors.status[0]}</p>
+            )}
+          </div>
+
+          <div className="flex gap-3 pt-4">
+            <Button
+              type="submit"
+              variant="primary"
+              loading={loading}
+              className="flex-1"
+            >
+              Add Vehicle
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => navigate('/vehicles')}
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+          </div>
+        </form>
+      </Card>
+    </div>
+  );
+};
