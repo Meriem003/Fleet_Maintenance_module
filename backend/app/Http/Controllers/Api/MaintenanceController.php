@@ -25,6 +25,22 @@ class MaintenanceController extends Controller
         return MaintenanceResource::collection($maintenances);
     }
 
+    public function overdue(Vehicle $vehicle): AnonymousResourceCollection
+    {
+        $maintenances = $this->maintenanceService->getOverdueMaintenances($vehicle);
+
+        return MaintenanceResource::collection($maintenances);
+    }
+
+    public function stats(Vehicle $vehicle): JsonResponse
+    {
+        $stats = $this->maintenanceService->getMaintenanceStats($vehicle);
+
+        return response()->json([
+            'data' => $stats,
+        ]);
+    }
+
     public function store(StoreMaintenanceRequest $request, Vehicle $vehicle): JsonResponse
     {
         $maintenance = $this->maintenanceService->createMaintenance($vehicle, $request->validated());
@@ -33,6 +49,19 @@ class MaintenanceController extends Controller
             'message' => 'Maintenance record created successfully',
             'data' => new MaintenanceResource($maintenance),
         ], 201);
+    }
+
+    public function show(Vehicle $vehicle, Maintenance $maintenance): JsonResponse
+    {
+        if ($maintenance->vehicle_id !== $vehicle->id) {
+            return response()->json([
+                'message' => 'This maintenance record does not belong to the specified vehicle',
+            ], 404);
+        }
+
+        return response()->json([
+            'data' => new MaintenanceResource($maintenance->load('vehicle')),
+        ]);
     }
 
     public function update(UpdateMaintenanceRequest $request, Maintenance $maintenance): JsonResponse

@@ -1,5 +1,5 @@
 import { Badge } from '../common/Badge';
-import { Calendar, DollarSign, Wrench, Trash2 } from 'lucide-react';
+import { Calendar, DollarSign, Wrench, Trash2, Edit } from 'lucide-react';
 import { format } from 'date-fns';
 
 const maintenanceTypeLabels = {
@@ -11,7 +11,7 @@ const maintenanceTypeLabels = {
   other: 'Autre',
 };
 
-export const MaintenanceList = ({ maintenances, onDelete }) => {
+export const MaintenanceList = ({ maintenances, onDelete, onEdit }) => {
   if (maintenances.length === 0) {
     return (
       <div className="text-center py-12">
@@ -74,13 +74,25 @@ export const MaintenanceList = ({ maintenances, onDelete }) => {
               )}
             </div>
 
-            <button
-              onClick={() => onDelete(maintenance.id)}
-              className="ml-4 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-              title="Supprimer l'enregistrement de maintenance"
-            >
-              <Trash2 className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-2 ml-4">
+              {onEdit && (
+                <button
+                  onClick={() => onEdit(maintenance)}
+                  className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                  title="Modifier l'enregistrement de maintenance"
+                >
+                  <Edit className="w-5 h-5" />
+                </button>
+              )}
+              
+              <button
+                onClick={() => onDelete(maintenance.id)}
+                className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                title="Supprimer l'enregistrement de maintenance"
+              >
+                <Trash2 className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       ))}

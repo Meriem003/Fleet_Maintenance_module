@@ -39,27 +39,20 @@ class Maintenance extends Model
         ];
     }
 
-    /**
-     * Récupérer le véhicule associé à cette maintenance.
-     *
-     * @return BelongsTo
-     */
     public function vehicle(): BelongsTo
     {
         return $this->belongsTo(Vehicle::class);
     }
 
-    /**
-     * Vérifier si la maintenance est en retard.
-     *
-     * @return bool
-     */
+
     public function isOverdue(): bool
     {
         if (!$this->next_maintenance_date) {
             return false;
         }
 
-        return $this->next_maintenance_date->isPast();
+        // next_maintenance_date est automatiquement casté en Carbon par Laravel
+        // mais pour être sûr, on utilise une comparaison de date SQL-style
+        return $this->next_maintenance_date < Carbon::today();
     }
 }

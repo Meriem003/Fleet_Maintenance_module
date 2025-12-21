@@ -7,6 +7,7 @@ import { Badge } from '../components/common/Badge';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { MaintenanceList } from '../components/features/MaintenanceList';
 import { AddMaintenanceModal } from '../components/features/AddMaintenanceModal';
+import { EditMaintenanceModal } from '../components/features/EditMaintenanceModal';
 import { ArrowLeft, Edit, Trash2, Plus, Calendar, DollarSign, AlertTriangle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -18,6 +19,8 @@ export const VehicleDetailsPage = () => {
   const [maintenances, setMaintenances] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedMaintenance, setSelectedMaintenance] = useState(null);
 
   useEffect(() => {
     loadVehicleData();
@@ -73,6 +76,17 @@ export const VehicleDetailsPage = () => {
     } catch (error) {
       toast.error('Échec de la suppression de l\'enregistrement de maintenance');
     }
+  };
+
+  const handleMaintenanceEdit = (maintenance) => {
+    setSelectedMaintenance(maintenance);
+    setShowEditModal(true);
+  };
+
+  const handleMaintenanceUpdated = () => {
+    loadVehicleData();
+    setShowEditModal(false);
+    setSelectedMaintenance(null);
   };
 
   if (loading) {
@@ -205,6 +219,7 @@ export const VehicleDetailsPage = () => {
         <MaintenanceList
           maintenances={maintenances}
           onDelete={handleMaintenanceDeleted}
+          onEdit={handleMaintenanceEdit}
         />
       </Card>
 
@@ -214,6 +229,17 @@ export const VehicleDetailsPage = () => {
         onClose={() => setShowAddModal(false)}
         vehicleId={id}
         onSuccess={handleMaintenanceAdded}
+      />
+
+      {/* Edit Maintenance Modal */}
+      <EditMaintenanceModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedMaintenance(null);
+        }}
+        maintenance={selectedMaintenance}
+        onSuccess={handleMaintenanceUpdated}
       />
     </div>
   );

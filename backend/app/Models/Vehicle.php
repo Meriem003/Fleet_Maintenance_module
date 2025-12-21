@@ -37,36 +37,38 @@ class Vehicle extends Model
         ];
     }
 
-    /**
-     * Récupérer toutes les maintenances du véhicule.
-     *
-     * @return HasMany
-     */
     public function maintenances(): HasMany
     {
         return $this->hasMany(Maintenance::class);
     }
 
-    /**
-     * Récupérer la dernière maintenance effectuée.
-     *
-     * @return HasOne
-     */
     public function latestMaintenance(): HasOne
     {
         return $this->hasOne(Maintenance::class)->latestOfMany();
     }
 
-    /**
-     * Vérifier si le véhicule a des maintenances en retard.
-     *
-     * @return bool
-     */
     public function hasOverdueMaintenance(): bool
     {
         return $this->maintenances()
             ->whereNotNull('next_maintenance_date')
-            ->where('next_maintenance_date', '<', Carbon::today())
+            ->whereDate('next_maintenance_date', '<', Carbon::today())
             ->exists();
+    }
+
+    public function overdueMaintenances()
+    {
+        return $this->maintenances()
+            ->whereNotNull('next_maintenance_date')
+            ->whereDate('next_maintenance_date', '<', Carbon::today())
+            ->orderBy('next_maintenance_date', 'asc')
+            ->get();
+    }
+
+    public function overdueMaintenancesCount(): int
+    {
+        return $this->maintenances()
+            ->whereNotNull('next_maintenance_date')
+            ->whereDate('next_maintenance_date', '<', Carbon::today())
+            ->count();
     }
 }
