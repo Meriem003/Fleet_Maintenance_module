@@ -43,26 +43,7 @@ cp .env.example .env
 ```bash
 npm start
 ```
-
 The application will open at [http://localhost:3000](http://localhost:3000)
-
-## Pages Structure
-
-### Login
-- Empty component ready for login form implementation
-- TODO: Add authentication logic
-
-### VehiclesList
-- Empty component ready for vehicles list display
-- TODO: Fetch and display vehicles from API
-
-### VehicleDetails
-- Empty component ready for vehicle details and maintenance history
-- TODO: Fetch vehicle data and display maintenance records
-
-### AddMaintenance
-- Empty component ready for maintenance creation form
-- TODO: Add form and API integration
 
 ## API Configuration
 
