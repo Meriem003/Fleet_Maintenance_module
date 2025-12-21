@@ -34,7 +34,7 @@ export const VehicleDetailsPage = () => {
       setVehicle(vehicleData);
       setMaintenances(maintenanceData.data || []);
     } catch (error) {
-      toast.error('Failed to load vehicle details');
+      toast.error('Échec du chargement des détails du véhicule');
       navigate('/vehicles');
     } finally {
       setLoading(false);
@@ -42,41 +42,41 @@ export const VehicleDetailsPage = () => {
   };
 
   const handleDelete = async () => {
-    if (!window.confirm('Are you sure you want to delete this vehicle? This action cannot be undone.')) {
+    if (!window.confirm('Êtes-vous sûr de vouloir supprimer ce véhicule ? Cette action est irréversible.')) {
       return;
     }
 
     try {
       await vehicleService.delete(id);
-      toast.success('Vehicle deleted successfully');
+      toast.success('Véhicule supprimé avec succès');
       navigate('/vehicles');
     } catch (error) {
-      toast.error('Failed to delete vehicle');
+      toast.error('Échec de la suppression du véhicule');
     }
   };
 
   const handleMaintenanceAdded = () => {
     loadVehicleData();
     setShowAddModal(false);
-    toast.success('Maintenance record added successfully');
+    toast.success('Enregistrement de maintenance ajouté avec succès');
   };
 
   const handleMaintenanceDeleted = async (maintenanceId) => {
-    if (!window.confirm('Are you sure you want to delete this maintenance record?')) {
+    if (!window.confirm('Êtes-vous sûr de vouloir supprimer cet enregistrement de maintenance ?')) {
       return;
     }
 
     try {
       await maintenanceService.delete(maintenanceId);
-      toast.success('Maintenance record deleted');
+      toast.success('Enregistrement de maintenance supprimé');
       loadVehicleData();
     } catch (error) {
-      toast.error('Failed to delete maintenance record');
+      toast.error('Échec de la suppression de l\'enregistrement de maintenance');
     }
   };
 
   if (loading) {
-    return <LoadingSpinner text="Loading vehicle details..." />;
+    return <LoadingSpinner text="Chargement des détails du véhicule..." />;
   }
 
   if (!vehicle) {
@@ -93,7 +93,7 @@ export const VehicleDetailsPage = () => {
         className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
       >
         <ArrowLeft className="w-5 h-5" />
-        Back to Vehicles
+        Retour aux Véhicules
       </button>
 
       {/* Vehicle Header */}
@@ -103,27 +103,27 @@ export const VehicleDetailsPage = () => {
             <div className="flex items-center gap-3 mb-2">
               <h1 className="text-3xl font-bold text-gray-900">{vehicle.plate_number}</h1>
               <Badge variant={vehicle.status === 'active' ? 'success' : 'danger'}>
-                {vehicle.status}
+                {vehicle.status === 'active' ? 'Actif' : 'Inactif'}
               </Badge>
               {vehicle.has_overdue_maintenance && (
                 <Badge variant="warning">
                   <AlertTriangle className="w-3 h-3 mr-1" />
-                  Overdue Maintenance
+                  Maintenance en Retard
                 </Badge>
               )}
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
               <div>
-                <p className="text-sm text-gray-600">Model</p>
+                <p className="text-sm text-gray-600">Modèle</p>
                 <p className="text-lg font-semibold text-gray-900">{vehicle.model}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Year</p>
+                <p className="text-sm text-gray-600">Année</p>
                 <p className="text-lg font-semibold text-gray-900">{vehicle.year}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Total Maintenance Cost</p>
+                <p className="text-sm text-gray-600">Coût Total de Maintenance</p>
                 <p className="text-lg font-semibold text-gray-900">${totalMaintenanceCost.toFixed(2)}</p>
               </div>
             </div>
@@ -135,14 +135,14 @@ export const VehicleDetailsPage = () => {
               className="btn-secondary flex items-center gap-2"
             >
               <Edit className="w-4 h-4" />
-              Edit
+              Modifier
             </button>
             <button
               onClick={handleDelete}
               className="btn-danger flex items-center gap-2"
             >
               <Trash2 className="w-4 h-4" />
-              Delete
+              Supprimer
             </button>
           </div>
         </div>
@@ -168,7 +168,7 @@ export const VehicleDetailsPage = () => {
               <DollarSign className="w-6 h-6 text-green-600" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Total Cost</p>
+              <p className="text-sm text-gray-600">Coût Total</p>
               <p className="text-2xl font-bold text-gray-900">${totalMaintenanceCost.toFixed(2)}</p>
             </div>
           </div>
@@ -180,7 +180,7 @@ export const VehicleDetailsPage = () => {
               <DollarSign className="w-6 h-6 text-purple-600" />
             </div>
             <div>
-              <p className="text-sm text-gray-600">Average Cost</p>
+              <p className="text-sm text-gray-600">Coût Moyen</p>
               <p className="text-2xl font-bold text-gray-900">
                 ${maintenances.length > 0 ? (totalMaintenanceCost / maintenances.length).toFixed(2) : '0.00'}
               </p>
@@ -192,13 +192,13 @@ export const VehicleDetailsPage = () => {
       {/* Maintenance History */}
       <Card>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">Maintenance History</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Historique de Maintenance</h2>
           <button
             onClick={() => setShowAddModal(true)}
             className="btn-primary flex items-center gap-2"
           >
             <Plus className="w-5 h-5" />
-            Add Maintenance
+            Ajouter Maintenance
           </button>
         </div>
 

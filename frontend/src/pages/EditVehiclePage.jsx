@@ -37,7 +37,7 @@ export const EditVehiclePage = () => {
         status: data.status,
       });
     } catch (error) {
-      toast.error('Failed to load vehicle');
+      toast.error('Échec du chargement du véhicule');
       navigate('/vehicles');
     } finally {
       setLoading(false);
@@ -59,19 +59,19 @@ export const EditVehiclePage = () => {
 
     try {
       await vehicleService.update(id, formData);
-      toast.success('Vehicle updated successfully');
+      toast.success('Véhicule mis à jour avec succès');
       navigate(`/vehicles/${id}`);
     } catch (error) {
       const validationErrors = error.response?.data?.errors || {};
       setErrors(validationErrors);
-      toast.error(error.response?.data?.message || 'Failed to update vehicle');
+      toast.error(error.response?.data?.message || 'Échec de la mise à jour du véhicule');
     } finally {
       setSubmitting(false);
     }
   };
 
   if (loading) {
-    return <LoadingSpinner text="Loading vehicle..." />;
+    return <LoadingSpinner text="Chargement du véhicule..." />;
   }
 
   return (
@@ -81,15 +81,15 @@ export const EditVehiclePage = () => {
         className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
       >
         <ArrowLeft className="w-5 h-5" />
-        Back to Vehicle Details
+        Retour aux Détails du Véhicule
       </button>
 
       <Card>
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Edit Vehicle</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Modifier le Véhicule</h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <Input
-            label="Plate Number"
+            label="Numéro de Plaque"
             name="plate_number"
             value={formData.plate_number}
             onChange={handleChange}
@@ -98,7 +98,7 @@ export const EditVehiclePage = () => {
           />
 
           <Input
-            label="Model"
+            label="Modèle"
             name="model"
             value={formData.model}
             onChange={handleChange}
@@ -107,7 +107,7 @@ export const EditVehiclePage = () => {
           />
 
           <Input
-            label="Year"
+            label="Année"
             name="year"
             type="number"
             min="1900"
@@ -120,7 +120,7 @@ export const EditVehiclePage = () => {
 
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-gray-700">
-              Status
+              Statut
             </label>
             <select
               name="status"
@@ -128,8 +128,8 @@ export const EditVehiclePage = () => {
               onChange={handleChange}
               className="input-field"
             >
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="active">Actif</option>
+              <option value="inactive">Inactif</option>
             </select>
             {errors.status && (
               <p className="text-sm text-red-600">{errors.status[0]}</p>
@@ -143,7 +143,7 @@ export const EditVehiclePage = () => {
               loading={submitting}
               className="flex-1"
             >
-              Update Vehicle
+              Mettre à Jour le Véhicule
             </Button>
             <Button
               type="button"
@@ -151,7 +151,7 @@ export const EditVehiclePage = () => {
               onClick={() => navigate(`/vehicles/${id}`)}
               className="flex-1"
             >
-              Cancel
+              Annuler
             </Button>
           </div>
         </form>

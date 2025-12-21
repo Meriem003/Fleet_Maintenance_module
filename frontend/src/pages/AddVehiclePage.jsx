@@ -34,12 +34,12 @@ export const AddVehiclePage = () => {
 
     try {
       await vehicleService.create(formData);
-      toast.success('Vehicle added successfully');
+      toast.success('Véhicule ajouté avec succès');
       navigate('/vehicles');
     } catch (error) {
       const validationErrors = error.response?.data?.errors || {};
       setErrors(validationErrors);
-      toast.error(error.response?.data?.message || 'Failed to add vehicle');
+      toast.error(error.response?.data?.message || 'Échec de l\'ajout du véhicule');
     } finally {
       setLoading(false);
     }
@@ -53,16 +53,16 @@ export const AddVehiclePage = () => {
         className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
       >
         <ArrowLeft className="w-5 h-5" />
-        Back to Vehicles
+        Retour aux Véhicules
       </button>
 
       {/* Form Card */}
       <Card>
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Add New Vehicle</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Ajouter un Nouveau Véhicule</h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <Input
-            label="Plate Number"
+            label="Numéro de Plaque"
             name="plate_number"
             placeholder="ABC-1234"
             value={formData.plate_number}
@@ -72,7 +72,7 @@ export const AddVehiclePage = () => {
           />
 
           <Input
-            label="Model"
+            label="Modèle"
             name="model"
             placeholder="Toyota Camry"
             value={formData.model}
@@ -82,7 +82,7 @@ export const AddVehiclePage = () => {
           />
 
           <Input
-            label="Year"
+            label="Année"
             name="year"
             type="number"
             min="1900"
@@ -95,7 +95,7 @@ export const AddVehiclePage = () => {
 
           <div className="space-y-1.5">
             <label className="block text-sm font-medium text-gray-700">
-              Status
+              Statut
             </label>
             <select
               name="status"
@@ -103,8 +103,8 @@ export const AddVehiclePage = () => {
               onChange={handleChange}
               className="input-field"
             >
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="active">Actif</option>
+              <option value="inactive">Inactif</option>
             </select>
             {errors.status && (
               <p className="text-sm text-red-600">{errors.status[0]}</p>
@@ -118,7 +118,7 @@ export const AddVehiclePage = () => {
               loading={loading}
               className="flex-1"
             >
-              Add Vehicle
+              Ajouter le Véhicule
             </Button>
             <Button
               type="button"
@@ -126,7 +126,7 @@ export const AddVehiclePage = () => {
               onClick={() => navigate('/vehicles')}
               className="flex-1"
             >
-              Cancel
+              Annuler
             </Button>
           </div>
         </form>

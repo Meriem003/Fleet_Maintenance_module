@@ -44,7 +44,7 @@ export const DashboardPage = () => {
         overdueMaintenances: overdue,
       });
     } catch (error) {
-      toast.error('Failed to load vehicles', {
+      toast.error('Échec du chargement des véhicules', {
         style: {
           borderRadius: '12px',
           background: '#ef4444',
@@ -66,18 +66,18 @@ export const DashboardPage = () => {
       >
         <div>
           <h1 className="page-title text-gray-900">
-            Fleet Management Dashboard
+            Tableau de Bord de Gestion de Flotte
           </h1>
           <p className="page-subtitle flex items-center gap-2">
             <Activity className="w-4 h-4" />
-            Real-time monitoring and analytics
+            Surveillance et analyses en temps réel
           </p>
         </div>
         <Button
           onClick={() => navigate('/vehicles')}
           icon={Car}
         >
-          View All Vehicles
+          Voir Tous les Véhicules
         </Button>
       </motion.div>
 
@@ -93,7 +93,7 @@ export const DashboardPage = () => {
         ) : (
           <>
             <StatCard
-              title="Total Vehicles"
+              title="Total Véhicules"
               value={stats.total}
               icon={Car}
               color="blue"
@@ -103,7 +103,7 @@ export const DashboardPage = () => {
             />
             
             <StatCard
-              title="Active Vehicles"
+              title="Véhicules Actifs"
               value={stats.active}
               icon={CheckCircle}
               color="green"
@@ -113,7 +113,7 @@ export const DashboardPage = () => {
             />
             
             <StatCard
-              title="Inactive Vehicles"
+              title="Véhicules Inactifs"
               value={stats.inactive}
               icon={XCircle}
               color="purple"
@@ -121,12 +121,12 @@ export const DashboardPage = () => {
             />
             
             <StatCard
-              title="Overdue Maintenance"
+              title="Maintenances en Retard"
               value={stats.overdueMaintenances}
               icon={AlertTriangle}
               color="red"
               trend={stats.overdueMaintenances > 0 ? "down" : "up"}
-              trendValue={stats.overdueMaintenances > 0 ? "Needs attention" : "All good"}
+              trendValue={stats.overdueMaintenances > 0 ? "Attention requise" : "Tout va bien"}
               delay={0.3}
             />
           </>
@@ -144,11 +144,11 @@ export const DashboardPage = () => {
           <AlertTriangle className="w-6 h-6 flex-shrink-0" />
           <div className="flex-1">
             <h3 className="text-lg font-bold mb-1">
-              Attention Required
+              Attention Requise
             </h3>
             <p className="mb-3">
-              You have <span className="font-bold">{stats.overdueMaintenances}</span> vehicle(s) with overdue maintenance. 
-              Please check and schedule maintenance as soon as possible to avoid potential issues.
+              Vous avez <span className="font-bold">{stats.overdueMaintenances}</span> véhicule(s) avec des maintenances en retard. 
+              Veuillez vérifier et planifier la maintenance dès que possible pour éviter tout problème.
             </p>
             <Button
               variant="danger"
@@ -156,7 +156,7 @@ export const DashboardPage = () => {
               onClick={() => navigate('/vehicles')}
               icon={Eye}
             >
-              View Overdue Vehicles
+              Voir les Véhicules en Retard
             </Button>
           </div>
         </motion.div>
@@ -170,7 +170,7 @@ export const DashboardPage = () => {
       >
         <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
           <TrendingUp className="w-6 h-6 text-slate-700" />
-          Quick Actions
+          Actions Rapides
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <motion.button
@@ -186,8 +186,8 @@ export const DashboardPage = () => {
               <div className="w-14 h-14 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <Plus className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Add New Vehicle</h3>
-              <p className="text-sm text-gray-600">Register a new vehicle to your fleet management system</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Ajouter un Véhicule</h3>
+              <p className="text-sm text-gray-600">Enregistrer un nouveau véhicule dans votre système de gestion</p>
             </div>
           </motion.button>
 
@@ -204,8 +204,8 @@ export const DashboardPage = () => {
               <div className="w-14 h-14 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <Car className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">View All Vehicles</h3>
-              <p className="text-sm text-gray-600">Browse, search, and manage all vehicles in your fleet</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Voir Tous les Véhicules</h3>
+              <p className="text-sm text-gray-600">Parcourir, rechercher et gérer tous les véhicules de votre flotte</p>
             </div>
           </motion.button>
 
@@ -222,8 +222,8 @@ export const DashboardPage = () => {
               <div className="w-14 h-14 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
                 <Wrench className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Maintenance Schedule</h3>
-              <p className="text-sm text-gray-600">Check and manage upcoming maintenance schedules</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Planning de Maintenance</h3>
+              <p className="text-sm text-gray-600">Vérifier et gérer les plannings de maintenance à venir</p>
             </div>
           </motion.button>
         </div>
@@ -243,12 +243,12 @@ export const DashboardPage = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl flex items-center justify-center">
                 <Activity className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900">Fleet Health</h3>
+              <h3 className="text-lg font-bold text-gray-900">Santé de la Flotte</h3>
             </div>
             
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Active Rate</span>
+                <span className="text-sm text-gray-600">Taux d'Activité</span>
                 <span className="text-sm font-bold text-slate-700">
                   {stats.total > 0 ? Math.round((stats.active / stats.total) * 100) : 0}%
                 </span>
@@ -262,7 +262,7 @@ export const DashboardPage = () => {
               
               <div className="pt-2 flex items-center gap-2 text-sm text-gray-600">
                 <CheckCircle className="w-4 h-4 text-slate-700" />
-                <span>{stats.active} active of {stats.total} total vehicles</span>
+                <span>{stats.active} actifs sur {stats.total} véhicules au total</span>
               </div>
             </div>
           </div>
@@ -273,12 +273,12 @@ export const DashboardPage = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-orange-600 to-red-600 rounded-xl flex items-center justify-center">
                 <Calendar className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-gray-900">Maintenance Status</h3>
+              <h3 className="text-lg font-bold text-gray-900">Statut de Maintenance</h3>
             </div>
             
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-600">Overdue Items</span>
+                <span className="text-sm text-gray-600">Éléments en Retard</span>
                 <span className="text-sm font-bold text-rose-600">
                   {stats.overdueMaintenances}
                 </span>
@@ -296,8 +296,8 @@ export const DashboardPage = () => {
                 <AlertTriangle className="w-4 h-4 text-amber-600" />
                 <span>
                   {stats.overdueMaintenances > 0 
-                    ? `${stats.overdueMaintenances} vehicle${stats.overdueMaintenances > 1 ? 's' : ''} need attention`
-                    : 'All maintenance up to date'
+                    ? `${stats.overdueMaintenances} véhicule${stats.overdueMaintenances > 1 ? 's' : ''} nécessite${stats.overdueMaintenances > 1 ? 'nt' : ''} attention`
+                    : 'Toutes les maintenances sont à jour'
                   }
                 </span>
               </div>

@@ -34,7 +34,7 @@ export const VehiclesListPage = () => {
       const data = await vehicleService.getAll();
       setVehicles(data.data || []);
       if (isRefresh) {
-        toast.success('Vehicles refreshed!', {
+        toast.success('Véhicules actualisés !', {
           icon: '🔄',
           style: {
             borderRadius: '12px',
@@ -44,7 +44,7 @@ export const VehiclesListPage = () => {
         });
       }
     } catch (error) {
-      toast.error('Failed to load vehicles', {
+      toast.error('Échec du chargement des véhicules', {
         style: {
           borderRadius: '12px',
           background: '#ef4444',
@@ -60,7 +60,7 @@ export const VehiclesListPage = () => {
   const handleDeleteVehicle = async (id) => {
     try {
       await vehicleService.delete(id);
-      toast.success('Vehicle deleted successfully! 🗑️', {
+      toast.success('Véhicule supprimé avec succès !', {
         style: {
           borderRadius: '12px',
           background: '#10b981',
@@ -69,7 +69,7 @@ export const VehiclesListPage = () => {
       });
       loadVehicles();
     } catch (error) {
-      toast.error('Failed to delete vehicle', {
+      toast.error('Échec de la suppression du véhicule', {
         style: {
           borderRadius: '12px',
           background: '#ef4444',
@@ -114,10 +114,10 @@ export const VehiclesListPage = () => {
       >
         <div>
           <h1 className="page-title gradient-text">
-            Vehicle Fleet
+            Flotte de Véhicules
           </h1>
           <p className="page-subtitle">
-            {loading ? 'Loading...' : `${filteredVehicles.length} of ${vehicles.length} vehicles`}
+            {loading ? 'Chargement...' : `${filteredVehicles.length} sur ${vehicles.length} véhicules`}
           </p>
         </div>
         <div className="flex gap-3">
@@ -128,13 +128,13 @@ export const VehiclesListPage = () => {
             disabled={refreshing}
             size="sm"
           >
-            {refreshing ? 'Refreshing...' : 'Refresh'}
+            {refreshing ? 'Actualisation...' : 'Actualiser'}
           </Button>
           <Button
             onClick={() => navigate('/vehicles/new')}
             icon={Plus}
           >
-            Add Vehicle
+            Ajouter un Véhicule
           </Button>
         </div>
       </motion.div>
@@ -151,8 +151,8 @@ export const VehiclesListPage = () => {
             <Filter className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h3 className="font-bold text-gray-900">Filters</h3>
-            <p className="text-sm text-gray-600">Refine your search</p>
+            <h3 className="font-bold text-gray-900">Filtres</h3>
+            <p className="text-sm text-gray-600">Affiner votre recherche</p>
           </div>
           {hasActiveFilters && (
             <button
@@ -160,7 +160,7 @@ export const VehiclesListPage = () => {
               className="ml-auto text-sm font-medium text-gray-600 hover:text-gray-900 flex items-center gap-1"
             >
               <X className="w-4 h-4" />
-              Clear
+              Effacer
             </button>
           )}
         </div>
@@ -171,7 +171,7 @@ export const VehiclesListPage = () => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
             <input
               type="text"
-              placeholder="Search by plate or model..."
+              placeholder="Rechercher par plaque ou modèle..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="input-field pl-12"
@@ -185,9 +185,9 @@ export const VehiclesListPage = () => {
               onChange={(e) => setStatusFilter(e.target.value)}
               className="input-field appearance-none cursor-pointer"
             >
-              <option value="all">All Status</option>
-              <option value="active">✅ Active</option>
-              <option value="inactive">❌ Inactive</option>
+              <option value="all">Tous les statuts</option>
+              <option value="active">Actif</option>
+              <option value="inactive">Inactif</option>
             </select>
             <Filter className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
           </div>
@@ -199,9 +199,9 @@ export const VehiclesListPage = () => {
               onChange={(e) => setMaintenanceFilter(e.target.value)}
               className="input-field appearance-none cursor-pointer"
             >
-              <option value="all">All Maintenance</option>
-              <option value="overdue">⚠️ Overdue</option>
-              <option value="ok">✅ Up to Date</option>
+              <option value="all">Toutes les maintenances</option>
+              <option value="overdue">En retard</option>
+              <option value="ok">À jour</option>
             </select>
             <Filter className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
           </div>
@@ -221,14 +221,14 @@ export const VehiclesListPage = () => {
       ) : filteredVehicles.length === 0 ? (
         <EmptyState
           icon={vehicles.length === 0 ? Plus : Search}
-          title={vehicles.length === 0 ? "No Vehicles Yet" : "No Vehicles Found"}
+          title={vehicles.length === 0 ? "Aucun véhicule" : "Aucun véhicule trouvé"}
           description={
             vehicles.length === 0
-              ? "Get started by adding your first vehicle to the fleet"
-              : "Try adjusting your filters or search criteria"
+              ? "Commencez par ajouter votre premier véhicule à la flotte"
+              : "Essayez d'ajuster vos filtres ou critères de recherche"
           }
           action={vehicles.length === 0 ? () => navigate('/vehicles/new') : clearFilters}
-          actionLabel={vehicles.length === 0 ? "Add Your First Vehicle" : "Clear Filters"}
+          actionLabel={vehicles.length === 0 ? "Ajouter votre premier véhicule" : "Effacer les filtres"}
           actionIcon={vehicles.length === 0 ? Plus : X}
         />
       ) : (
@@ -259,10 +259,10 @@ export const VehiclesListPage = () => {
         isOpen={deleteDialog.isOpen}
         onClose={() => setDeleteDialog({ isOpen: false, vehicleId: null })}
         onConfirm={() => handleDeleteVehicle(deleteDialog.vehicleId)}
-        title="Delete Vehicle?"
-        message="Are you sure you want to delete this vehicle? This action cannot be undone and will remove all associated maintenance records."
-        confirmText="Delete Vehicle"
-        cancelText="Cancel"
+        title="Supprimer le véhicule ?"
+        message="Êtes-vous sûr de vouloir supprimer ce véhicule ? Cette action est irréversible et supprimera tous les enregistrements de maintenance associés."
+        confirmText="Supprimer le véhicule"
+        cancelText="Annuler"
         variant="danger"
       />
     </div>

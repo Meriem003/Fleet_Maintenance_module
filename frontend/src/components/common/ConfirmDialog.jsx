@@ -8,8 +8,8 @@ export const ConfirmDialog = ({
   onConfirm, 
   title, 
   message,
-  confirmText = 'Confirm',
-  cancelText = 'Cancel',
+  confirmText = 'Confirmer',
+  cancelText = 'Annuler',
   variant = 'danger'
 }) => {
   return (

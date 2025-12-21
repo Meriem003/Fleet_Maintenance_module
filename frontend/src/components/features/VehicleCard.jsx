@@ -41,7 +41,7 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
               </h3>
               <Badge variant={vehicle.status === 'active' ? 'success' : 'gray'} className="mt-1">
                 <span className="status-dot mr-1 w-2 h-2 rounded-full bg-current" />
-                {vehicle.status}
+                {vehicle.status === 'active' ? 'Actif' : 'Inactif'}
               </Badge>
             </div>
           </div>
@@ -52,7 +52,7 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
           <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <Gauge className="w-4 h-4 text-gray-400" />
-              <span className="font-medium">Model</span>
+              <span className="font-medium">Modèle</span>
             </div>
             <span className="text-sm font-bold text-gray-900">{vehicle.model}</span>
           </div>
@@ -60,7 +60,7 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
           <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <Calendar className="w-4 h-4 text-gray-400" />
-              <span className="font-medium">Year</span>
+              <span className="font-medium">Année</span>
             </div>
             <span className="text-sm font-bold text-gray-900">{vehicle.year}</span>
           </div>
@@ -71,7 +71,7 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
               <span className="font-medium">Maintenance</span>
             </div>
             <span className="text-sm font-bold text-blue-900">
-              {vehicle.maintenances_count || 0} records
+              {vehicle.maintenances_count || 0} enregistrement{(vehicle.maintenances_count || 0) > 1 ? 's' : ''}
             </span>
           </div>
         </div>
@@ -84,7 +84,7 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
             className="alert alert-danger mb-4"
           >
             <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-            <span className="text-sm font-bold">Overdue Maintenance!</span>
+            <span className="text-sm font-bold">Maintenance en retard !</span>
           </motion.div>
         )}
       </div>
@@ -98,7 +98,7 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
           className="flex-1 px-3 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
         >
           <Eye className="w-4 h-4" />
-          View
+          Voir
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -110,7 +110,7 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
           className="flex-1 px-3 py-2.5 text-sm font-semibold text-gray-700 bg-white border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 rounded-lg transition-all flex items-center justify-center gap-2"
         >
           <Edit className="w-4 h-4" />
-          Edit
+          Modifier
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}

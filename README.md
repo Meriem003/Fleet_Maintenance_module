@@ -52,7 +52,7 @@ The application follows REST API architecture with Laravel backend and React fro
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
+git clone < https://github.com/Meriem003/Fleet_Maintenance_module.git >
 cd Fleet_Maintenance_module
 ```
 

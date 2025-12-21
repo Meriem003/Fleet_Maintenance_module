@@ -42,18 +42,18 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
     } catch (error) {
       const validationErrors = error.response?.data?.errors || {};
       setErrors(validationErrors);
-      toast.error(error.response?.data?.message || 'Failed to add maintenance');
+      toast.error(error.response?.data?.message || 'Échec de l\'ajout de la maintenance');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Add Maintenance Record">
+    <Modal isOpen={isOpen} onClose={onClose} title="Ajouter un Enregistrement de Maintenance">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-1.5">
           <label className="block text-sm font-medium text-gray-700">
-            Maintenance Type
+            Type de Maintenance
           </label>
           <select
             name="maintenance_type"
@@ -62,12 +62,12 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
             className="input-field"
             required
           >
-            <option value="oil_change">Oil Change</option>
-            <option value="tires">Tires</option>
+            <option value="oil_change">Vidange d'Huile</option>
+            <option value="tires">Pneus</option>
             <option value="inspection">Inspection</option>
-            <option value="brake_service">Brake Service</option>
-            <option value="battery_replacement">Battery Replacement</option>
-            <option value="other">Other</option>
+            <option value="brake_service">Service de Freins</option>
+            <option value="battery_replacement">Remplacement de Batterie</option>
+            <option value="other">Autre</option>
           </select>
           {errors.maintenance_type && (
             <p className="text-sm text-red-600">{errors.maintenance_type[0]}</p>
@@ -75,7 +75,7 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
         </div>
 
         <Input
-          label="Maintenance Date"
+          label="Date de Maintenance"
           name="maintenance_date"
           type="date"
           value={formData.maintenance_date}
@@ -85,7 +85,7 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
         />
 
         <Input
-          label="Next Maintenance Date (Optional)"
+          label="Prochaine Date de Maintenance (Optionnel)"
           name="next_maintenance_date"
           type="date"
           value={formData.next_maintenance_date}
@@ -94,7 +94,7 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
         />
 
         <Input
-          label="Cost"
+          label="Coût"
           name="cost"
           type="number"
           step="0.01"
@@ -108,7 +108,7 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
 
         <div className="space-y-1.5">
           <label className="block text-sm font-medium text-gray-700">
-            Notes (Optional)
+            Notes (Optionnel)
           </label>
           <textarea
             name="notes"
@@ -116,7 +116,7 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
             onChange={handleChange}
             rows="3"
             className="input-field resize-none"
-            placeholder="Additional notes about this maintenance..."
+            placeholder="Notes supplémentaires à propos de cette maintenance..."
           />
           {errors.notes && (
             <p className="text-sm text-red-600">{errors.notes[0]}</p>
@@ -130,7 +130,7 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
             loading={loading}
             className="flex-1"
           >
-            Add Maintenance
+            Ajouter la Maintenance
           </Button>
           <Button
             type="button"
@@ -138,7 +138,7 @@ export const AddMaintenanceModal = ({ isOpen, onClose, vehicleId, onSuccess }) =
             onClick={onClose}
             className="flex-1"
           >
-            Cancel
+            Annuler
           </Button>
         </div>
       </form>
