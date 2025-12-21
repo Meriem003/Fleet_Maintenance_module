@@ -5,18 +5,26 @@ export const Button = ({
   variant = 'primary', 
   loading = false, 
   icon: Icon,
+  size = 'md',
   ...props 
 }) => {
   const variants = {
     primary: 'btn-primary',
     secondary: 'btn-secondary',
     danger: 'btn-danger',
+    success: 'btn-success',
+  };
+
+  const sizes = {
+    sm: 'btn-sm',
+    md: '',
+    lg: 'px-8 py-4 text-lg',
   };
 
   return (
     <button
-      className={`${variants[variant]} flex items-center gap-2 justify-center`}
-      disabled={loading}
+      className={`${variants[variant]} ${sizes[size]} flex items-center gap-2 justify-center`}
+      disabled={loading || props.disabled}
       {...props}
     >
       {loading ? (
