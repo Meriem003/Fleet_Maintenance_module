@@ -1,4 +1,5 @@
 import { Loader2 } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 export const Button = ({ 
   children, 
@@ -29,10 +30,19 @@ export const Button = ({
     >
       {loading ? (
         <Loader2 className="w-4 h-4 animate-spin" />
-      ) : Icon ? (
-        <Icon className="w-4 h-4" />
-      ) : null}
+      ) : (
+        Icon && <Icon className="w-4 h-4" />
+      )}
       {children}
     </button>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.node,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'danger']),
+  loading: PropTypes.bool,
+  icon: PropTypes.elementType,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  disabled: PropTypes.bool,
 };

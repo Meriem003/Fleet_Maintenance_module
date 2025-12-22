@@ -1,6 +1,8 @@
 import { Badge } from '../common/Badge';
-import { Calendar, DollarSign, Wrench, Trash2, Edit } from 'lucide-react';
+import { Calendar, DollarSign, Wrench, Trash2, Edit, AlertTriangle } from 'lucide-react';
 import { format } from 'date-fns';
+import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 const maintenanceTypeLabels = {
   oil_change: 'Vidange d\'Huile',
@@ -34,10 +36,17 @@ export const MaintenanceList = ({ maintenances, onDelete, onEdit }) => {
 
   return (
     <div className="space-y-4">
-      {maintenances.map((maintenance) => (
-        <div
+      {maintenances.map((maintenance, index) => (
+        <motion.div
           key={maintenance.id}
-          className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.05 }}
+          className={`rounded-xl p-4 hover:shadow-md transition-all ${
+            maintenance.is_overdue 
+              ? 'bg-red-50 border-l-4 border-l-red-500' 
+              : 'bg-gray-50 hover:bg-gray-100'
+          }`}
         >
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -46,7 +55,20 @@ export const MaintenanceList = ({ maintenances, onDelete, onEdit }) => {
                   {maintenanceTypeLabels[maintenance.maintenance_type] || maintenance.maintenance_type}
                 </Badge>
                 {maintenance.is_overdue && (
-                  <Badge variant="danger">En Retard</Badge>
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                    }}
+                  >
+                    <Badge variant="danger" className="flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3" />
+                      En Retard
+                    </Badge>
+                  </motion.div>
                 )}
               </div>
 
@@ -58,7 +80,7 @@ export const MaintenanceList = ({ maintenances, onDelete, onEdit }) => {
                 
                 <div className="flex items-center gap-2 text-gray-600">
                   <DollarSign className="w-4 h-4" />
-                  <span className="font-semibold text-gray-900">${parseFloat(maintenance.cost).toFixed(2)}</span>
+                  <span className="font-semibold text-gray-900">${Number.parseFloat(maintenance.cost).toFixed(2)}</span>
                 </div>
 
                 {maintenance.next_maintenance_date && (
@@ -94,8 +116,24 @@ export const MaintenanceList = ({ maintenances, onDelete, onEdit }) => {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
   );
+};
+
+MaintenanceList.propTypes = {
+  maintenances: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      maintenance_type: PropTypes.string,
+      maintenance_date: PropTypes.string,
+      next_maintenance_date: PropTypes.string,
+      cost: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      notes: PropTypes.string,
+      is_overdue: PropTypes.bool,
+    })
+  ).isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onEdit: PropTypes.func.isRequired,
 };

@@ -5,9 +5,10 @@ import { vehicleService } from '../services/vehicles';
 import { StatCard } from '../components/common/StatCard';
 import { SkeletonCard } from '../components/common/SkeletonCard';
 import { Button } from '../components/common/Button';
+import { MaintenanceAlerts } from '../components/features/MaintenanceAlerts';
 import { 
   Car, Plus, AlertTriangle, CheckCircle, Activity,
-  TrendingUp, Calendar, Wrench, Eye, XCircle
+  TrendingUp, Calendar, Wrench, XCircle
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -133,34 +134,8 @@ export const DashboardPage = () => {
         )}
       </div>
 
-      {/* Alert Section - Enhanced */}
-      {!loading && stats.overdueMaintenances > 0 && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4 }}
-          className="alert alert-danger mb-8"
-        >
-          <AlertTriangle className="w-6 h-6 flex-shrink-0" />
-          <div className="flex-1">
-            <h3 className="text-lg font-bold mb-1">
-              Attention Requise
-            </h3>
-            <p className="mb-3">
-              Vous avez <span className="font-bold">{stats.overdueMaintenances}</span> véhicule(s) avec des maintenances en retard. 
-              Veuillez vérifier et planifier la maintenance dès que possible pour éviter tout problème.
-            </p>
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={() => navigate('/vehicles')}
-              icon={Eye}
-            >
-              Voir les Véhicules en Retard
-            </Button>
-          </div>
-        </motion.div>
-      )}
+      {/* Maintenance Alerts - New Component */}
+      {!loading && <MaintenanceAlerts />}
 
       {/* Quick Actions - Premium Cards */}
       <motion.div

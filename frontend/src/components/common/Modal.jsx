@@ -23,7 +23,14 @@ export const Modal = ({ isOpen, onClose, title, children, size = 'md' }) => {
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-md animate-in fade-in duration-200" onClick={onClose} />
+      <div 
+        className="fixed inset-0 bg-black/60 backdrop-blur-md animate-in fade-in duration-200" 
+        onClick={onClose}
+        onKeyDown={(e) => e.key === 'Escape' && onClose()}
+        role="button"
+        tabIndex={0}
+        aria-label="Close modal"
+      />
       <div className="flex min-h-full items-center justify-center p-4">
         <div className={`bg-white rounded-2xl shadow-modal-backdrop w-full ${sizes[size]} animate-in zoom-in-95 duration-200 relative z-10`}>
           {/* Header */}

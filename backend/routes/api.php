@@ -17,6 +17,9 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::apiResource('vehicles', VehicleController::class);
     
     // Routes de maintenance
+    Route::get('/maintenance/alerts/summary', [MaintenanceController::class, 'alertsSummary']);
+    Route::get('/maintenance/overdue/all', [MaintenanceController::class, 'allOverdue']);
+    
     Route::get('/vehicles/{vehicle}/maintenance', [MaintenanceController::class, 'index']);
     Route::get('/vehicles/{vehicle}/maintenance/overdue', [MaintenanceController::class, 'overdue']);
     Route::get('/vehicles/{vehicle}/maintenance/stats', [MaintenanceController::class, 'stats']);

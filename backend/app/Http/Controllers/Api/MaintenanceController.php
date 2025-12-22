@@ -82,4 +82,23 @@ class MaintenanceController extends Controller
             'message' => 'Maintenance record deleted successfully',
         ]);
     }
+
+    public function allOverdue(): AnonymousResourceCollection
+    {
+        $maintenances = $this->maintenanceService->getAllOverdueMaintenances();
+
+        return MaintenanceResource::collection($maintenances);
+    }
+
+    public function alertsSummary(): JsonResponse
+    {
+        $overdueCount = $this->maintenanceService->getOverdueMaintenancesCount();
+
+        return response()->json([
+            'data' => [
+                'overdue_count' => $overdueCount,
+                'has_alerts' => $overdueCount > 0,
+            ],
+        ]);
+    }
 }

@@ -118,21 +118,23 @@ export const EditVehiclePage = () => {
             required
           />
 
-          <div className="space-y-1.5">
-            <label className="block text-sm font-medium text-gray-700">
+          <div className="space-y-2">
+            <label className="block text-sm font-semibold text-gray-700">
               Statut
             </label>
             <select
               name="status"
               value={formData.status}
               onChange={handleChange}
-              className="input-field"
+              className="w-full px-4 py-3.5 bg-white border border-gray-300 focus:border-blue-500 hover:border-gray-400 rounded-xl text-gray-900 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/10 hover:bg-gray-50 cursor-pointer"
             >
               <option value="active">Actif</option>
               <option value="inactive">Inactif</option>
             </select>
             {errors.status && (
-              <p className="text-sm text-red-600">{errors.status[0]}</p>
+              <p className="text-sm text-red-600 flex items-center gap-1">
+                <span className="font-medium">⚠</span> {errors.status[0]}
+              </p>
             )}
           </div>
 

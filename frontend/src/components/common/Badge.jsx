@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Badge = ({ children, variant = 'info' }) => {
   const variants = {
     success: 'badge-success',
@@ -11,4 +13,9 @@ export const Badge = ({ children, variant = 'info' }) => {
       {children}
     </span>
   );
+};
+
+Badge.propTypes = {
+  children: PropTypes.node,
+  variant: PropTypes.oneOf(['success', 'warning', 'danger', 'info']),
 };

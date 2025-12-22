@@ -48,12 +48,12 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100">
+    <div className="min-h-screen flex bg-gradient-to-br from-slate-800 via-slate-900 to-black">
       {/* Left Column - Professional Section */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-800 via-slate-900 to-black p-12 flex-col justify-center items-start text-white relative overflow-hidden"
       >
         {/* Animated Background Pattern */}
@@ -67,9 +67,9 @@ export const LoginPage = () => {
         <div className="relative z-10 max-w-xl">
           {/* Logo */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            initial={{ scale: 0, rotate: -10 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 120, damping: 12 }}
             className="mb-12"
           >
             <div className="flex items-center gap-4">
@@ -91,9 +91,9 @@ export const LoginPage = () => {
 
           {/* Description */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
             className="space-y-6"
           >
             <div className="relative">
@@ -110,11 +110,11 @@ export const LoginPage = () => {
             {/* Features List */}
             <div className="space-y-4 mt-8">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all"
+                transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ x: 8, scale: 1.02 }}
+                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all hover:bg-white/10 hover:border-white/30"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -122,11 +122,11 @@ export const LoginPage = () => {
                 <span className="text-slate-200 text-base">Suivi en temps réel de tous vos véhicules</span>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all"
+                transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ x: 8, scale: 1.02 }}
+                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all hover:bg-white/10 hover:border-white/30"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -134,11 +134,11 @@ export const LoginPage = () => {
                 <span className="text-slate-200 text-base">Gestion intelligente des maintenances</span>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7 }}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all"
+                transition={{ delay: 0.7, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ x: 8, scale: 1.02 }}
+                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all hover:bg-white/10 hover:border-white/30"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -146,11 +146,11 @@ export const LoginPage = () => {
                 <span className="text-slate-200 text-base">Analyse des coûts et rapports détaillés</span>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8 }}
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all"
+                transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ x: 8, scale: 1.02 }}
+                className="flex items-center gap-4 p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group cursor-pointer transition-all hover:bg-white/10 hover:border-white/30"
               >
                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
@@ -163,89 +163,68 @@ export const LoginPage = () => {
       </motion.div>
 
       {/* Right Column - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 relative overflow-hidden bg-gradient-to-br from-slate-100 via-gray-50 to-slate-50">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 lg:p-12 relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-black">
         {/* Background Decorative Elements */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          {/* Animated gradient orbs */}
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.6, 0.8, 0.6],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-br from-blue-200/60 via-purple-200/50 to-pink-200/40 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.5, 0.7, 0.5],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-tr from-orange-200/55 via-amber-200/45 to-yellow-200/35 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              rotate: [0, 360],
-              opacity: [0.4, 0.6, 0.4],
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-r from-teal-200/50 to-cyan-200/40 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2"
-          />
-          
-          {/* Geometric shapes */}
-          <div className="absolute top-20 left-20 w-32 h-32 bg-slate-300/20 rounded-2xl rotate-12 blur-sm" />
-          <div className="absolute bottom-32 right-32 w-24 h-24 bg-gray-300/20 rounded-full blur-sm" />
+          {/* Animated Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-full h-full" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }} />
+          </div>
         </div>
         
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="w-full max-w-md relative z-10"
         >
           {/* Mobile Logo */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+            initial={{ scale: 0, rotate: -10 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ delay: 0.3, type: "spring", stiffness: 120, damping: 12 }}
             className="lg:hidden mb-8 text-center"
           >
             <div className="flex items-center justify-center gap-4 mb-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-slate-700 to-slate-900 rounded-2xl flex items-center justify-center shadow-xl">
+              <div className="w-16 h-16 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-xl border border-white/30">
                 <Car className="w-8 h-8 text-white" />
               </div>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-white mb-2">
               Gestionnaire de Flotte
             </h1>
-            <p className="text-gray-600 font-medium">
+            <p className="text-slate-300 font-medium">
               Système Professionnel de Gestion
             </p>
           </motion.div>
 
           {/* Login Card */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 lg:p-10 border border-gray-100 relative overflow-hidden"
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
+            whileHover={{ scale: 1.01 }}
+            className="bg-white/10 backdrop-blur-2xl rounded-3xl shadow-2xl p-8 lg:p-10 border border-white/20 relative overflow-hidden hover:border-white/30 transition-all duration-500"
           >
             {/* Decorative gradient */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-700 via-slate-800 to-slate-900" />
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-slate-100 to-transparent rounded-full blur-3xl opacity-30" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-white/60 via-white/30 to-transparent" />
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-3xl opacity-30" />
             
             <div className="mb-8 relative">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="text-3xl font-bold text-white mb-2">
                 Bienvenue
               </h2>
-              <p className="text-gray-600">Connectez-vous pour accéder à votre tableau de bord</p>
+              <p className="text-slate-300">Connectez-vous pour accéder à votre tableau de bord</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
+                initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ scale: 1.02 }}
               >
                 <Input
                   label="Adresse Email"
@@ -255,14 +234,16 @@ export const LoginPage = () => {
                   icon={Mail}
                   placeholder="admin@example.com"
                   error={errors.email?.[0]}
+                  variant="dark"
                   required
                 />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
+                initial={{ opacity: 0, x: -30, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ scale: 1.02 }}
               >
                 <Input
                   label="Mot de passe"
@@ -272,32 +253,35 @@ export const LoginPage = () => {
                   icon={Lock}
                   placeholder="••••••••"
                   error={errors.password?.[0]}
+                  variant="dark"
                   required
                 />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 0.7, duration: 0.6, ease: "easeOut" }}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <Button
                   type="submit"
                   loading={loading}
-                  className="w-full bg-gradient-to-r from-slate-700 via-slate-800 to-slate-900 hover:from-slate-800 hover:via-slate-900 hover:to-black text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-[1.02] active:scale-95 transition-all duration-300 relative overflow-hidden group"
+                  className="w-full bg-gradient-to-r from-white/25 via-white/15 to-white/10 hover:from-white/40 hover:via-white/30 hover:to-white/20 text-white font-bold py-4 px-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-500 relative overflow-hidden group border border-white/40 hover:border-white/60"
                 >
-                  <span className="relative z-10">Se Connecter</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                  <span className="relative z-10 flex items-center justify-center gap-2">Se Connecter</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
                 </Button>
               </motion.div>
             </form>
 
             {/* Footer */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
-              className="text-center text-gray-500 mt-8 text-sm"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.6, ease: "easeOut" }}
+              className="text-center text-slate-300/80 mt-8 text-sm"
             >
               <p>
                 © 2024 Gestionnaire de Flotte. Tous droits réservés.

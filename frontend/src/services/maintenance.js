@@ -42,4 +42,16 @@ export const maintenanceService = {
     const response = await api.get(`/vehicles/${vehicleId}/maintenance/stats`);
     return response.data;
   },
+
+  // Récupérer toutes les maintenances en retard (tous véhicules)
+  async getAllOverdue() {
+    const response = await api.get('/maintenance/overdue/all');
+    return response.data;
+  },
+
+  // Récupérer le résumé des alertes
+  async getAlertsSummary() {
+    const response = await api.get('/maintenance/alerts/summary');
+    return response.data;
+  },
 };

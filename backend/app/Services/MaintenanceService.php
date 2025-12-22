@@ -59,4 +59,20 @@ class MaintenanceService
                 ->min('next_maintenance_date'),
         ];
     }
+
+    public function getAllOverdueMaintenances(): Collection
+    {
+        return Maintenance::with('vehicle')
+            ->whereNotNull('next_maintenance_date')
+            ->whereDate('next_maintenance_date', '<', \Carbon\Carbon::today())
+            ->orderBy('next_maintenance_date', 'asc')
+            ->get();
+    }
+
+    public function getOverdueMaintenancesCount(): int
+    {
+        return Maintenance::whereNotNull('next_maintenance_date')
+            ->whereDate('next_maintenance_date', '<', \Carbon\Carbon::today())
+            ->count();
+    }
 }

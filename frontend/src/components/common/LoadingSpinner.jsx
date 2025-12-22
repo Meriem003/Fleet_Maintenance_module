@@ -1,4 +1,5 @@
 import { Loader2 } from 'lucide-react';
+import PropTypes from 'prop-types';
 
 export const LoadingSpinner = ({ size = 'md', text = 'Chargement...' }) => {
   const sizes = {

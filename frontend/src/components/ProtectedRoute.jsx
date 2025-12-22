@@ -1,7 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LoadingSpinner } from '../components/common/LoadingSpinner';
-
+import { LoadingSpinner } from '../components/common/LoadingSpinner';import PropTypes from 'prop-types';
 export const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
 
@@ -14,4 +13,8 @@ export const ProtectedRoute = ({ children }) => {
   }
 
   return children;
+};
+
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
 };

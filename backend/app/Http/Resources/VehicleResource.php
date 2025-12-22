@@ -16,6 +16,7 @@ class VehicleResource extends JsonResource
             'year' => $this->year,
             'status' => $this->status,
             'has_overdue_maintenance' => $this->hasOverdueMaintenance(),
+            'overdue_maintenance_count' => $this->overdueMaintenancesCount(),
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];

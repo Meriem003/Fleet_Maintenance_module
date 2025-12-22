@@ -7,6 +7,9 @@
 @layer base {
   * {
     @apply border-gray-200;
+    font-family: 'Inter', sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
   }
   
   body {
@@ -30,12 +33,6 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400;
-  }
-
-  /* Firefox Scrollbar */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 #f1f5f9;
   }
 }
 

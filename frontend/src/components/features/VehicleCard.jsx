@@ -81,10 +81,29 @@ export const VehicleCard = ({ vehicle, onDelete }) => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="alert alert-danger mb-4"
+            className="flex items-center justify-between p-3 bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-l-red-500 rounded-lg mb-4 shadow-sm"
           >
-            <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-            <span className="text-sm font-bold">Maintenance en retard !</span>
+            <div className="flex items-center gap-2">
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  rotate: [0, -10, 10, -10, 0]
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 3
+                }}
+              >
+                <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0" />
+              </motion.div>
+              <span className="text-sm font-bold text-red-800">
+                {vehicle.overdue_maintenance_count || 1} maintenance{(vehicle.overdue_maintenance_count || 1) > 1 ? 's' : ''} en retard !
+              </span>
+            </div>
+            <span className="px-2 py-1 bg-red-500 text-white text-xs font-bold rounded-full">
+              Urgent
+            </span>
           </motion.div>
         )}
       </div>

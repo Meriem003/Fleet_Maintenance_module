@@ -59,15 +59,15 @@ export const EditMaintenanceModal = ({ isOpen, onClose, maintenance, onSuccess }
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="Modifier l'Enregistrement de Maintenance">
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-1.5">
-          <label className="block text-sm font-medium text-gray-700">
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-gray-700">
             Type de Maintenance
           </label>
           <select
             name="maintenance_type"
             value={formData.maintenance_type}
             onChange={handleChange}
-            className="input-field"
+            className="w-full px-4 py-3.5 bg-white border border-gray-300 focus:border-blue-500 hover:border-gray-400 rounded-xl text-gray-900 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/10 hover:bg-gray-50 cursor-pointer"
             required
           >
             <option value="oil_change">Vidange d'Huile</option>
@@ -78,7 +78,9 @@ export const EditMaintenanceModal = ({ isOpen, onClose, maintenance, onSuccess }
             <option value="other">Autre</option>
           </select>
           {errors.maintenance_type && (
-            <p className="text-sm text-red-600">{errors.maintenance_type[0]}</p>
+            <p className="text-sm text-red-600 flex items-center gap-1">
+              <span className="font-medium">⚠</span> {errors.maintenance_type[0]}
+            </p>
           )}
         </div>
 
@@ -114,8 +116,8 @@ export const EditMaintenanceModal = ({ isOpen, onClose, maintenance, onSuccess }
           required
         />
 
-        <div className="space-y-1.5">
-          <label className="block text-sm font-medium text-gray-700">
+        <div className="space-y-2">
+          <label className="block text-sm font-semibold text-gray-700">
             Notes (Optionnel)
           </label>
           <textarea
@@ -123,11 +125,13 @@ export const EditMaintenanceModal = ({ isOpen, onClose, maintenance, onSuccess }
             value={formData.notes}
             onChange={handleChange}
             rows="3"
-            className="input-field resize-none"
+            className="w-full px-4 py-3.5 bg-white border border-gray-300 focus:border-blue-500 hover:border-gray-400 rounded-xl text-gray-900 placeholder-gray-400 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500/10 hover:bg-gray-50 resize-none"
             placeholder="Notes supplémentaires à propos de cette maintenance..."
           />
           {errors.notes && (
-            <p className="text-sm text-red-600">{errors.notes[0]}</p>
+            <p className="text-sm text-red-600 flex items-center gap-1">
+              <span className="font-medium">⚠</span> {errors.notes[0]}
+            </p>
           )}
         </div>
 

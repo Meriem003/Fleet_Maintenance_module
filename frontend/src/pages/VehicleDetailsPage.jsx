@@ -97,7 +97,7 @@ export const VehicleDetailsPage = () => {
     return null;
   }
 
-  const totalMaintenanceCost = maintenances.reduce((sum, m) => sum + parseFloat(m.cost), 0);
+  const totalMaintenanceCost = maintenances.reduce((sum, m) => sum + Number.parseFloat(m.cost), 0);
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
