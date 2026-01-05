@@ -1,4 +1,4 @@
-# Fleet & Maintenance Module - Technical Test
+# Fleet & Maintenance Module
 
 **Technology Stack:** Laravel (Backend) + React (Frontend)  
 **Developer:** [Salhi Meryem]  
